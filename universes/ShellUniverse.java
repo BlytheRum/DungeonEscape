@@ -7,8 +7,14 @@ public class ShellUniverse implements Universe {
 	private ArrayList<DisplayableSprite> sprites = new ArrayList<DisplayableSprite>();
 	private ArrayList<Background> backgrounds = new ArrayList<Background>();
 	private ArrayList<DisplayableSprite> disposalList = new ArrayList<DisplayableSprite>();
+	private Background stoneBackground = null;	
 
+	
 	public ShellUniverse () {
+		stoneBackground = new StoneBackground();
+
+		backgrounds = new ArrayList<Background>();
+		backgrounds.add(stoneBackground);
 
 		this.setXCenter(0);
 		this.setYCenter(0);
@@ -47,6 +53,7 @@ public class ShellUniverse implements Universe {
 		return backgrounds;
 	}	
 
+	
 	public ArrayList<DisplayableSprite> getSprites() {
 		return sprites;
 	}
