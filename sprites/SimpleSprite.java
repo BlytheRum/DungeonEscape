@@ -1,6 +1,7 @@
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
@@ -110,12 +111,48 @@ public class SimpleSprite implements DisplayableSprite {
 		}
 
 		double deltaX = actual_delta_time * 0.001 * velocityX;
-        this.centerX += deltaX;
+        
 		
 		double deltaY = actual_delta_time * 0.001 * velocityY;
-    	this.centerY += deltaY;
+    	
 
+    	
+		boolean collidingBarrierX = checkCollisionWithBarrier(universe.getSprites(), deltaX, 0);
+		boolean collidingBarrierY = checkCollisionWithBarrier(universe.getSprites(), 0, deltaY);
+		
+		System.out.println(collidingBarrierX);
+		
+
+		//only move if there is no collision with pinball in any dimension and no collision with barrier in X dimension 
+		if ((collidingBarrierX == false)) {
+			this.centerX += deltaX;
+		}
+		//only move if there is no collision with pinball in any dimension and no collision with barrier in Y dimension 
+		if ((collidingBarrierY == false)) {
+			this.centerY += deltaY;
+		}
 	}
+
+	private boolean checkCollisionWithBarrier(ArrayList<DisplayableSprite> sprites, double deltaX, double deltaY) {
+
+		//deltaX and deltaY represent the potential change in position
+		boolean colliding = false;
+
+		for (DisplayableSprite sprite : sprites) {
+			if (sprite instanceof BarrierSprite) {
+				if (CollisionDetection.overlaps(this.getMinX() + deltaX, this.getMinY() + deltaY, 
+						this.getMaxX()  + deltaX, this.getMaxY() + deltaY, 
+						sprite.getMinX(),sprite.getMinY(), 
+						sprite.getMaxX(), sprite.getMaxY())) {
+					colliding = true;
+					break;					
+				}
+			}
+		}		
+		return colliding;		
+	}
+	
+	
 
 
 	@Override

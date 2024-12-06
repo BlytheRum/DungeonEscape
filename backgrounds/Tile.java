@@ -8,7 +8,7 @@ public class Tile {
 	int height = 0;
 	int width = 0;
 	boolean outOfBounds = false;
-		
+
 	public Tile(Image image, int x, int y, int width, int height, boolean outOfBounds) {
 		this.image = image;
 		this.x = x;
@@ -50,5 +50,5 @@ public class Tile {
 	public boolean isOutOfBounds() {
 		return outOfBounds;
 	}
-		
+
 }

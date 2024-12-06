@@ -8,17 +8,22 @@ public class ShellUniverse implements Universe {
 	private ArrayList<Background> backgrounds = new ArrayList<Background>();
 	private ArrayList<DisplayableSprite> disposalList = new ArrayList<DisplayableSprite>();
 	private Background stoneBackground = null;	
+	private Background tutorialBackground = null;
 
 	
 	public ShellUniverse () {
 		stoneBackground = new StoneBackground();
+		tutorialBackground = new TutorialBackground();
+		ArrayList<DisplayableSprite> barriers = ((TutorialBackground)tutorialBackground).getBarriers();
 
 		backgrounds = new ArrayList<Background>();
 		backgrounds.add(stoneBackground);
-
+		backgrounds.add(tutorialBackground);		
 		this.setXCenter(0);
 		this.setYCenter(0);
-		player1 = new SimpleSprite(0,0);
+		player1 = new SimpleSprite(TutorialBackground.TILE_HEIGHT * 2, TutorialBackground.TILE_WIDTH * 2, TutorialBackground.TILE_HEIGHT * 0.9, TutorialBackground.TILE_HEIGHT * 0.9);
+		
+		sprites.addAll(barriers);
 		sprites.add(player1);
 			
 	}
