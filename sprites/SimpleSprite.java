@@ -30,7 +30,7 @@ public class SimpleSprite implements DisplayableSprite {
 		
 		if (image == null) {
 			try {
-				image = ImageIO.read(new File("res/simple-sprite.png"));
+				image = ImageIO.read(new File("res/knight.png"));
 			}
 			catch (IOException e) {
 				System.out.println(e.toString());
