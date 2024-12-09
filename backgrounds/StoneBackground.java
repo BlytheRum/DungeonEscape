@@ -28,6 +28,7 @@ public class StoneBackground implements Background {
 	public Tile getTile(int col, int row) {
 		//row is an index of tiles, with 0 being the at the origin
 		//col is an index of tiles, with 0 being the at the origin
+		//e
 		int x = (col * backgroundWidth) - offsetX;
 		int y = (row * backgroundHeight);
 		Tile newTile = null;
