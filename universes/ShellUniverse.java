@@ -44,7 +44,7 @@ public class ShellUniverse implements Universe {
 
 	public double getYCenter() {
 		return this.player1.getCenterY();
-	}
+	} 
 
 	public void setXCenter(double xCenter) {
 	}

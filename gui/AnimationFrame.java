@@ -357,33 +357,19 @@ public class AnimationFrame extends JFrame {
 		if (keyboard.keyDown(KeyboardInput.KEY_O) && isPaused ) {
 			btnPauseRun_mouseClicked(null);
 		}
-		if (keyboard.keyDown(KeyboardInput.KEY_F1)) {
-			scale *= 1.01;
-			contentPane_mouseMoved(null);
-		}
-		if (keyboard.keyDown(KeyboardInput.KEY_F2)) {
-			scale /= 1.01;
-			contentPane_mouseMoved(null);
-		}
-		
-		if (keyboard.keyDown(KeyboardInput.KEY_A)) {
-			screenOffsetX += 1;
-		}
-		if (keyboard.keyDown(KeyboardInput.KEY_D)) {
-			screenOffsetX -= 1;
-		}
-		if (keyboard.keyDown(KeyboardInput.KEY_S)) {
-			screenOffsetY += 1;
-		}
-		if (keyboard.keyDown(KeyboardInput.KEY_X)) {
-			screenOffsetY -= 1;
-		}
-		if (keyboard.keyDownOnce(KeyboardInput.KEY_G)) {
-			this.SHOW_GRID = !this.SHOW_GRID;
-		}
-		if (keyboard.keyDownOnce(KeyboardInput.KEY_T)) {
-			this.DISPLAY_TIMING = !this.DISPLAY_TIMING;
-		}
+		/*
+		 * if (keyboard.keyDown(KeyboardInput.KEY_F1)) { scale *= 1.01;
+		 * contentPane_mouseMoved(null); } if (keyboard.keyDown(KeyboardInput.KEY_F2)) {
+		 * scale /= 1.01; contentPane_mouseMoved(null); }
+		 * 
+		 * if (keyboard.keyDown(KeyboardInput.KEY_A)) { screenOffsetX += 1; } if
+		 * (keyboard.keyDown(KeyboardInput.KEY_D)) { screenOffsetX -= 1; } if
+		 * (keyboard.keyDown(KeyboardInput.KEY_S)) { screenOffsetY += 1; } if
+		 * (keyboard.keyDown(KeyboardInput.KEY_X)) { screenOffsetY -= 1; } if
+		 * (keyboard.keyDownOnce(KeyboardInput.KEY_G)) { this.SHOW_GRID =
+		 * !this.SHOW_GRID; } if (keyboard.keyDownOnce(KeyboardInput.KEY_T)) {
+		 * this.DISPLAY_TIMING = !this.DISPLAY_TIMING; }
+		 */
 	}
 
 	/*
@@ -426,24 +412,13 @@ public class AnimationFrame extends JFrame {
 				}				
 			}
 			
-			if (SHOW_GRID) {
-				for (int x = 0; x <= SCREEN_WIDTH; x+=50) {
-					if (x % 100 == 0) {
-						g.setColor(Color.GRAY);						
-					} else {
-						g.setColor(Color.DARK_GRAY);						
-					}					
-					g.drawLine(x, 0, x, SCREEN_HEIGHT);
-				}
-				for (int y = 0; y <= SCREEN_HEIGHT; y+= 50) {
-					if (y % 100 == 0) {
-						g.setColor(Color.GRAY);						
-					} else {
-						g.setColor(Color.DARK_GRAY);						
-					}
-					g.drawLine(0, y, SCREEN_WIDTH, y);
-				}
-			}			
+			/*
+			 * if (SHOW_GRID) { for (int x = 0; x <= SCREEN_WIDTH; x+=50) { if (x % 100 ==
+			 * 0) { g.setColor(Color.GRAY); } else { g.setColor(Color.DARK_GRAY); }
+			 * g.drawLine(x, 0, x, SCREEN_HEIGHT); } for (int y = 0; y <= SCREEN_HEIGHT; y+=
+			 * 50) { if (y % 100 == 0) { g.setColor(Color.GRAY); } else {
+			 * g.setColor(Color.DARK_GRAY); } g.drawLine(0, y, SCREEN_WIDTH, y); } }
+			 */
 
 			paintAnimationPanel(g);
 			
