@@ -5,6 +5,7 @@ public class ShellUniverse implements Universe {
 	private boolean complete = false;	
 	private DisplayableSprite player1 = null;
 	private DisplayableSprite bat = null;
+	private DisplayableSprite bat1 = null;
 	private ArrayList<DisplayableSprite> sprites = new ArrayList<DisplayableSprite>();
 	private ArrayList<Background> backgrounds = new ArrayList<Background>();
 	private ArrayList<DisplayableSprite> disposalList = new ArrayList<DisplayableSprite>();
@@ -24,6 +25,7 @@ public class ShellUniverse implements Universe {
 		this.setYCenter(0);
 
 		bat = new BatSprite(150, 100, TutorialBackground.TILE_HEIGHT * 0.9, TutorialBackground.TILE_HEIGHT * 0.9);
+		bat1 = new BatSprite(150, 400, TutorialBackground.TILE_HEIGHT * 0.9, TutorialBackground.TILE_HEIGHT * 0.9);
 
 		player1 = new SimpleSprite(145, 200, TutorialBackground.TILE_HEIGHT * 0.9, TutorialBackground.TILE_HEIGHT * 0.9);
 		
@@ -31,6 +33,8 @@ public class ShellUniverse implements Universe {
 		sprites.addAll(barriers);
 		sprites.add(player1);
 		sprites.add(bat);
+		sprites.add(bat1);
+		
 			
 	}
 
