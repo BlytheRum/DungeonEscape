@@ -34,7 +34,7 @@ public class SimpleSprite implements DisplayableSprite {
 				image = ImageIO.read(new File("res/knight.png"));
 			}
 			catch (IOException e) {
-				System.out.println(e.toString());
+				//System.out.println(e.toString());
 			}		
 		}		
 	}
