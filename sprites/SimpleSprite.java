@@ -13,6 +13,8 @@ public class SimpleSprite implements DisplayableSprite {
 	private double width = 50;
 	private double height = 50;
 	private boolean dispose = false;	
+	
+	private int health = 100;
 
 	private final double VELOCITY = 200;
 
@@ -85,6 +87,15 @@ public class SimpleSprite implements DisplayableSprite {
 	public boolean getDispose() {
 		return dispose;
 	}
+	
+	public int getHealth() {
+		return health;
+	}
+
+
+	public void setHealth(int health) {
+		this.health = health;
+	}
 
 	public void update(Universe universe, long actual_delta_time) {
 		
@@ -119,6 +130,7 @@ public class SimpleSprite implements DisplayableSprite {
     	
 		boolean collidingBarrierX = checkCollisionWithBarrier(universe.getSprites(), deltaX, 0);
 		boolean collidingBarrierY = checkCollisionWithBarrier(universe.getSprites(), 0, deltaY);
+		boolean collidingWithBat = checkCollisionWithBat(universe.getSprites(), deltaX, deltaY);
 		
 		System.out.println(collidingBarrierX);
 		
@@ -130,6 +142,10 @@ public class SimpleSprite implements DisplayableSprite {
 		//only move if there is no collision with pinball in any dimension and no collision with barrier in Y dimension 
 		if ((collidingBarrierY == false)) {
 			this.centerY += deltaY;
+		}
+		
+		if ((collidingWithBat == true)) {
+			this.setHealth(this.getHealth() - 1);
 		}
 	}
 
@@ -152,6 +168,21 @@ public class SimpleSprite implements DisplayableSprite {
 		return colliding;		
 	}
 	
+	private boolean checkCollisionWithBat(ArrayList<DisplayableSprite> sprites, double deltaX, double deltaY) {
+		//deltaX and deltaY represent the potential change in position
+		boolean colliding = false;
+
+		for (DisplayableSprite sprite : sprites) {
+			if ((sprite instanceof BatSprite)) {
+				if (CollisionDetection.pixelBasedOverlaps(this, sprite, deltaX, deltaY)) {
+					colliding = true;
+					break;					
+				}
+			}
+		}		
+		return colliding;		
+	}
+	
 	
 
 
@@ -159,5 +190,8 @@ public class SimpleSprite implements DisplayableSprite {
 	public void setDispose(boolean dispose) {
 		this.dispose = true;
 	}
+
+
+	
 
 }

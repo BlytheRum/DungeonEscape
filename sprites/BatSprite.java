@@ -131,19 +131,27 @@ public class BatSprite implements DisplayableSprite {
 			}
 			System.out.println(String.format("delta time: %12d, angle: %5.2f; dx: %5.2f; dy: %5.2f; moveX %5.2f, moveY %5.2f", actual_delta_time, angle * 57.2958, dx, dy, deltaX, deltaY));
 		
-//			boolean collidingBarrierX = checkCollisionWithBarrier(universe.getSprites(), deltaX, 0);
-//			boolean collidingBarrierY = checkCollisionWithBarrier(universe.getSprites(), 0, deltaY);
-//			
-//			if ((collidingBarrierX == false)) {
-//				this.centerX += deltaX;
-//			}
-//			//only move if there is no collision with pinball in any dimension and no collision with barrier in Y dimension 
-//			if ((collidingBarrierY == false)) {
-//				this.centerY += deltaY;
-//			}
+			boolean collidingWithPinball = checkCollisionWithPlayer(universe.getSprites(), deltaX, deltaY);
+			boolean collidingWithBat = checkCollisionWithBat(universe.getSprites(), deltaX, deltaY);
 			
-			this.centerX += deltaX;
-			this.centerY += deltaY;
+			if ((collidingWithPinball == false) && (collidingWithBat == false)) {
+				this.centerX += deltaX;
+			}
+			//only move if there is no collision with pinball in any dimension and no collision with barrier in Y dimension 
+			if ((collidingWithPinball == false) && (collidingWithBat == false)) {
+				this.centerY += deltaY;
+			}
+			
+			if ((collidingWithPinball == false) && (collidingWithBat == true)) {
+				this.centerX += deltaX;
+			}
+			
+			if ((collidingWithPinball == false) && (collidingWithBat == true)) {
+				this.centerY -= deltaY;
+			}
+			
+//			this.centerX += deltaX;
+//			this.centerY += deltaY;
 //			System.out.printf("%f, %f", deltaX, deltaY);
 //			System.out.println();
 		}
@@ -183,24 +191,35 @@ public class BatSprite implements DisplayableSprite {
 		return inRange;
 	}
 
-//	private boolean checkCollisionWithBarrier(ArrayList<DisplayableSprite> sprites, double deltaX, double deltaY) {
-//
-//		//deltaX and deltaY represent the potential change in position
-//		boolean colliding = false;
-//
-//		for (DisplayableSprite sprite : sprites) {
-//			if (sprite instanceof BarrierSprite) {
-//				if (CollisionDetection.overlaps(this.getMinX() + deltaX, this.getMinY() + deltaY, 
-//						this.getMaxX()  + deltaX, this.getMaxY() + deltaY, 
-//						sprite.getMinX(),sprite.getMinY(), 
-//						sprite.getMaxX(), sprite.getMaxY())) {
-//					colliding = true;
-//					break;					
-//				}
-//			}
-//		}		
-//		return colliding;		
-//	}
+	private boolean checkCollisionWithPlayer(ArrayList<DisplayableSprite> sprites, double deltaX, double deltaY) {
+		//deltaX and deltaY represent the potential change in position
+		boolean colliding = false;
+
+		for (DisplayableSprite sprite : sprites) {
+			if (sprite instanceof SimpleSprite) {
+				if (CollisionDetection.pixelBasedOverlaps(this, sprite, deltaX, deltaY)) {
+					colliding = true;
+					break;					
+				}
+			}
+		}		
+		return colliding;		
+	}
+	
+	private boolean checkCollisionWithBat(ArrayList<DisplayableSprite> sprites, double deltaX, double deltaY) {
+		//deltaX and deltaY represent the potential change in position
+		boolean colliding = false;
+
+		for (DisplayableSprite sprite : sprites) {
+			if ((sprite instanceof BatSprite) && (sprite != this)) {
+				if (CollisionDetection.pixelBasedOverlaps(this, sprite, deltaX, deltaY)) {
+					colliding = true;
+					break;					
+				}
+			}
+		}		
+		return colliding;		
+	}
 
 	@Override
 	public void setDispose(boolean dispose) {
