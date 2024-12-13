@@ -129,7 +129,7 @@ public class BatSprite implements DisplayableSprite {
 				deltaX = 0 - deltaX;
 				deltaY = 0 - deltaY;
 			}
-			System.out.println(String.format("delta time: %12d, angle: %5.2f; dx: %5.2f; dy: %5.2f; moveX %5.2f, moveY %5.2f", actual_delta_time, angle * 57.2958, dx, dy, deltaX, deltaY));
+			//System.out.println(String.format("delta time: %12d, angle: %5.2f; dx: %5.2f; dy: %5.2f; moveX %5.2f, moveY %5.2f", actual_delta_time, angle * 57.2958, dx, dy, deltaX, deltaY));
 		
 			boolean collidingWithPinball = checkCollisionWithPlayer(universe.getSprites(), deltaX, deltaY);
 			boolean collidingWithBat = checkCollisionWithBat(universe.getSprites(), deltaX, deltaY);

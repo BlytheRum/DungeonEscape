@@ -137,6 +137,7 @@ public class TurretSprite implements DisplayableSprite {
 			double angle = Math.atan(dy/dx);
 			
 			//update image here
+			currentAngle = angle;
 
 			velocityX = (VELOCITY * Math.cos(angle) * 0.001);
 			velocityY = (VELOCITY * Math.sin(angle) * 0.001);
@@ -147,6 +148,8 @@ public class TurretSprite implements DisplayableSprite {
 			}
 			
 //			currentAngle ¡
+			System.out.println(String.format("delta time: %12d, angle: %5.2f; dx: %5.2f; dy: %5.2f; moveX %5.2f, moveY %5.2f", actual_delta_time, angle * 57.2958, dx, dy, velocityX, velocityY));
+
 			
 			if (reloadTime <= 0) {
 				bullet = new BulletSprite(this.centerX, this.centerY, velocityX, velocityY);
