@@ -6,11 +6,13 @@ public class ShellUniverse implements Universe {
 	private DisplayableSprite player1 = null;
 	private DisplayableSprite bat = null;
 	private DisplayableSprite bat1 = null;
+	private DisplayableSprite turret = null;
 	private ArrayList<DisplayableSprite> sprites = new ArrayList<DisplayableSprite>();
 	private ArrayList<Background> backgrounds = new ArrayList<Background>();
 	private ArrayList<DisplayableSprite> disposalList = new ArrayList<DisplayableSprite>();
 	private Background stoneBackground = null;	
 	private Background tutorialBackground = null;
+	
 
 	
 	public ShellUniverse () {
@@ -26,12 +28,14 @@ public class ShellUniverse implements Universe {
 
 		bat = new BatSprite(150, 100, TutorialBackground.TILE_HEIGHT * 0.9, TutorialBackground.TILE_HEIGHT * 0.9);
 		bat1 = new BatSprite(150, 400, TutorialBackground.TILE_HEIGHT * 0.9, TutorialBackground.TILE_HEIGHT * 0.9);
-
+		turret = new TurretSprite(400, 200, TutorialBackground.TILE_HEIGHT * 0.9, TutorialBackground.TILE_HEIGHT * 0.9);
+		
 		player1 = new SimpleSprite(145, 200, TutorialBackground.TILE_HEIGHT * 0.9, TutorialBackground.TILE_HEIGHT * 0.9);
 		
 		
 		sprites.addAll(barriers);
 		sprites.add(player1);
+		sprites.add(turret);
 		sprites.add(bat);
 		sprites.add(bat1);
 		
